@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './VideoItem.module.css';
-const VideoItem = ({video: {snippet}}) => (
-            <li className={styles.container}>
+const VideoItem = ({video, video: {snippet}, onVideoClick, display}) => {
+    const displayType = display === 'list'? styles.list : styles.grid;
+
+    return (
+            <li className={`${styles.container} ${displayType}`} onClick={()=>onVideoClick(video)}>
                 <div className={styles.video}>
                     <img className={styles.thumbnail}src={snippet.thumbnails.medium.url} alt="video thumbnail"></img>
                     <div className={styles.metadata}>
@@ -12,6 +15,6 @@ const VideoItem = ({video: {snippet}}) => (
 
                 
             </li>
-    );
+    )};
 
 export default VideoItem;
